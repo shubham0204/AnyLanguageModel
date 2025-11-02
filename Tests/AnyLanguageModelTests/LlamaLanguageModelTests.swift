@@ -81,6 +81,7 @@ import Testing
             let session = LanguageModelSession(model: model)
 
             let options = GenerationOptions(
+                sampling: .greedy,
                 temperature: 0.7,
                 maximumResponseTokens: 50
             )
@@ -116,7 +117,10 @@ import Testing
         @Test func maxTokensLimit() async throws {
             let session = LanguageModelSession(model: model)
 
-            let options = GenerationOptions(maximumResponseTokens: 10)
+            let options = GenerationOptions(
+                sampling: .greedy,
+                maximumResponseTokens: 10
+            )
             let response = try await session.respond(
                 to: "Write a long essay about artificial intelligence",
                 options: options
